@@ -12,7 +12,6 @@ func startRepl() {
 
 	for {
 		fmt.Print("> ")
-
 		scanner.Scan()
 		text := scanner.Text()
 
@@ -20,8 +19,16 @@ func startRepl() {
 		if len(cleaned) == 0 {
 			continue
 		}
+
+		command := cleaned[0]
 		
-		fmt.Println(cleaned)
+		switch command {
+		case "exit":
+			os.Exit(0)
+		default:
+			fmt.Println("Invalid command")
+		}
+		
 	}
 }
 
