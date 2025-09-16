@@ -15,8 +15,13 @@ func startRepl() {
 
 		scanner.Scan()
 		text := scanner.Text()
+
+		cleaned := cleanInput(text)
+		if len(cleaned) == 0 {
+			continue
+		}
 		
-		fmt.Println(text)
+		fmt.Println(cleaned)
 	}
 }
 
