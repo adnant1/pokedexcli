@@ -7,6 +7,12 @@ import (
 	"strings"
 )
 
+type cliCommand struct {
+	name string
+	description string
+	callback func()
+}
+
 func startRepl() {
 	scanner := bufio.NewScanner(os.Stdin)
 
