@@ -49,3 +49,18 @@ func cleanInput(str string) []string {
 
 	return words
 }
+
+func getCommands() map[string]cliCommand {
+	return map[string]cliCommand{
+		"help": {
+			name: "help",
+			description: "Displays the help menu",
+			callback:
+		},
+		"exit": {
+			name: "exit",
+			description: "Exits the Pokedex".
+			callback:
+		},
+	}
+}
