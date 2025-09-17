@@ -6,7 +6,7 @@ import (
 	"github.com/adnant1/pokedexcli/internal/pokeapi"
 )
 
-func callbackMap() error {
+func callbackMap(cfg *config) error {
 	pokeapiClient := pokeapi.NewClient()
 
 	res, err := pokeapiClient.GetLocationAreas()
