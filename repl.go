@@ -36,7 +36,10 @@ func startRepl(cfg *config) {
 			continue
 		}
 
-		command.callback(cfg)
+		err := command.callback(cfg)
+		if err != nil {
+			fmt.Printf("Error: %s\n", err)
+		}
 	}
 }
 
