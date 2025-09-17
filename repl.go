@@ -26,20 +26,17 @@ func startRepl() {
 			continue
 		}
 
-		command := cleaned[0]
-		
-		switch command {
-		case "help":
-			fmt.Println("Welcome to the Pokedex help menu!")
-			fmt.Println("Available commands:")
-			fmt.Println(" - help")
-			fmt.Println(" - exit")
-		case "exit":
-			os.Exit(0)
-		default:
+		commandName := cleaned[0]
+
+		availableCommands := getCommands()
+
+		command, ok := availableCommands[commandName]
+		if !ok {
 			fmt.Println("Invalid command")
+			continue
 		}
-		
+
+		command.callback()
 	}
 }
 
