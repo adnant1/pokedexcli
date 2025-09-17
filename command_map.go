@@ -24,7 +24,7 @@ func callbackMap(cfg *config) error {
 
 func callbackMapb(cfg *config) error {
 	if cfg.prevLocationAreaURL == nil {
-		return errors.New("No previous page")
+		return errors.New("no previous page")
 	}	
 
 	res, err := cfg.pokeapiClient.GetLocationAreas(cfg.prevLocationAreaURL)
