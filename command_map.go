@@ -5,7 +5,7 @@ import (
 )
 
 func callbackMap(cfg *config) error {
-	res, err := cfg.pokeapiClient.GetLocationAreas()
+	res, err := cfg.pokeapiClient.GetLocationAreas(cfg.nextLocationAreaURL)
 	if err != nil {
 		return err
 	}
