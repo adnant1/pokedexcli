@@ -1,5 +1,22 @@
 package pokeapi
 
+import (
+	"net/http"
+	"time"
+)
+
+type Client struct {
+	httpClient http.Client
+}
+
+func newClient() Client {
+	return Client {
+		httpClient: http.Client{
+			Timeout: time.Minute,
+		},
+	}
+}
+
 type LocationAreasResp struct {
 	Count int `json:"count"`
 	Next *string `json:"next"`
