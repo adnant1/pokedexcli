@@ -1,16 +1,19 @@
 package pokecache
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestCreateCache(t *testing.T) {
-	cache := NewCache()
+	cache := NewCache(time.Millisecond)
 	if cache.cache == nil {
 		t.Error("expected cache map to be initialized, got nil")
 	}
 }
 
 func TestAddAndGetCache(t *testing.T) {
-	cache := NewCache()
+	cache := NewCache(time.Millisecond)
 
 	cases := []struct {
 		key string
@@ -32,5 +35,19 @@ func TestAddAndGetCache(t *testing.T) {
 		if string(actual) != string(c.data) {
 			t.Errorf("for key %s, expected data %s, got %s", c.key, c.data, actual)
 		}
+	}
+}
+
+func TestReap (t *testing.T) {
+	interval := time.Millisecond * 10
+	cache := NewCache(interval)
+
+	cache.Add("key1", []byte("data1"))
+
+	time.Sleep(interval + time.Millisecond)
+
+	_, ok := cache.Get("key1")
+	if ok {
+		t.Error("expected key1 to be reaped, but it was found")
 	}
 }
