@@ -28,3 +28,21 @@ func (c *Cache) Get(key string) ([]byte, bool) {
 	entry, found := c.cache[key]
 	return entry.data, found
 }
+
+func (c *Cache) reapLoop(interval time.Duration) {
+	ticker := time.NewTicker(interval)
+
+	for range ticker.C {
+		c.reap(interval)
+	}
+}
+
+func (c *Cache) reap(interval time.Duration) {
+	t := time.Now().UTC().Add(-interval)
+
+	for key, entry := range c.cache {
+		if entry.createdAt.Before(t) {
+			delete(c.cache, key)
+		}
+	}
+}
